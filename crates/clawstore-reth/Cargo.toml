@@ -1,0 +1,33 @@
+[package]
+name = "clawstore-reth"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.93"
+authors = ["OpenClaw Project"]
+description = "ClawStore adapter for Reth — implements Reth database traits over ClawStore B2"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+# ClawStore core — our storage engine
+clawstore-core = { path = "../clawstore-core" }
+
+# Reth database API traits
+reth-db-api = { git = "https://github.com/paradigmxyz/reth", tag = "v1.11.0" }
+reth-db = { git = "https://github.com/paradigmxyz/reth", tag = "v1.11.0", default-features = false }
+reth-storage-errors = { git = "https://github.com/paradigmxyz/reth", tag = "v1.11.0" }
+
+[dev-dependencies]
+tempfile = "3"
+
+# Reth table types for integration tests
+reth-db = { git = "https://github.com/paradigmxyz/reth", tag = "v1.11.0" }
+reth-primitives-traits = { git = "https://github.com/paradigmxyz/reth", tag = "v1.11.0" }
+alloy-primitives = "1"
+
+# Benchmarks
+criterion = { version = "0.5", features = ["html_reports"] }
+rand = "0.8"
+
+[[bench]]
+name = "clawstore_bench"
+harness = false

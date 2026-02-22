@@ -1,0 +1,30 @@
+[package]
+name = "clawstore-core"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+authors = ["OpenClaw Project"]
+description = "Universal RAM-first storage engine — zero blockchain dependencies"
+license = "MIT OR Apache-2.0"
+keywords = ["storage", "database", "embedded", "key-value"]
+categories = ["database-implementations"]
+
+[dependencies]
+# Fast CRC32C with hardware acceleration (SSE 4.2 on x86, ARMv8 CRC)
+crc32c = "0.6"
+
+# High-performance hash table (SwissTable)
+hashbrown = "0.14"
+
+# Fast synchronization primitives (RwLock, Mutex)
+parking_lot = "0.12"
+
+# Platform-specific system calls
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+
+[target.'cfg(windows)'.dependencies]
+winapi = { version = "0.3", features = ["fileapi", "handleapi"] }
+
+[dev-dependencies]
+tempfile = "3"

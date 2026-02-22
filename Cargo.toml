@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "crates/clawstore-core",
+    "crates/clawstore-reth",
+]
+resolver = "2"
